@@ -2,10 +2,13 @@
 import MenuItem from '@/components/MenuItem';
 import SectionHeaders from '@/components/SectionHeaders';
 import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 export default function MenuPage() {
   const [categories, setCategories] = useState([]);
   const [menuItems, setMenuItems] = useState([]);
+  const session = useSession();
+  const { status } = session;
   useEffect(() => {
     fetch('api/categories').then((response) =>
       response.json().then((categories) => setCategories(categories))
@@ -14,6 +17,15 @@ export default function MenuPage() {
       response.json().then((menuItems) => setMenuItems(menuItems))
     );
   }, []);
+
+  if (status === 'loading') {
+    return (
+      <div className="flex justify-center items-center">
+        <span className="loading loading-bars loading-md"></span>
+      </div>
+    );
+  }
+
   return (
     <section>
       {categories?.length > 0 &&

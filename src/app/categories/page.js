@@ -16,7 +16,11 @@ export default function CategoriesPage() {
   }, []);
 
   if (profileLoading) {
-    return <span className="loading loading-ring loading-md"></span>;
+    return (
+      <div className="flex justify-center items-center">
+        <span className="loading loading-bars loading-md"></span>
+      </div>
+    );
   }
 
   if (!profileData.admin) {

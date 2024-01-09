@@ -3,9 +3,13 @@ import Image from 'next/legacy/image';
 import React, { useEffect, useState } from 'react';
 import MenuItem from './MenuItem';
 import SectionHeaders from './SectionHeaders';
+import { useSession } from 'next-auth/react';
 
 export default function HomeMenu() {
   const [bestSellers, setBestSellers] = useState([]);
+  const session = useSession();
+  const { status } = session;
+
   useEffect(() => {
     fetch('api/menu-items').then((response) =>
       response.json().then((menuItems) => {
@@ -13,6 +17,15 @@ export default function HomeMenu() {
       })
     );
   }, []);
+
+  if (status === 'loading') {
+    return (
+      <div className="flex justify-center items-center">
+        <span className="loading loading-bars loading-md"></span>
+      </div>
+    );
+  }
+
   return (
     <section>
       <div className="absolute  left-0 right-0 w-full">

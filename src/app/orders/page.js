@@ -30,7 +30,7 @@ export default function OrdersPage() {
       <Tabs isAdmin={true} />
       <div className="mt-8 ">
         {loadingOrders && (
-          <span className="loading loading-ring loading-md"></span>
+          <span className="loading loading-bars loading-md"></span>
         )}
         {orders?.length > 0 &&
           orders.map((order) => (

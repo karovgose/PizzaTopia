@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'PizzaTopia',
-  description: ' Delivering delicious pizzas to your doorstep!',
+  description: 'Delivering delicious pizzas to your doorstep!',
 };
 
 export default function RootLayout({ children }) {
