@@ -7,24 +7,16 @@ import { useSession } from 'next-auth/react';
 
 export default function HomeMenu() {
   const [bestSellers, setBestSellers] = useState([]);
-  const session = useSession();
-  const { status } = session;
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch('api/menu-items').then((response) =>
       response.json().then((menuItems) => {
         setBestSellers(menuItems.slice(2, 5));
+        setIsLoading(false);
       })
     );
   }, []);
-
-  if (status === 'loading') {
-    return (
-      <div className="flex justify-center items-center">
-        <span className="loading loading-bars loading-md"></span>
-      </div>
-    );
-  }
 
   return (
     <section>
@@ -43,6 +35,11 @@ export default function HomeMenu() {
           mainHeader={'Our Recommendation'}
         />
       </div>
+      {isLoading && (
+        <div className="flex justify-center items-center">
+          <span className="loading loading-bars loading-md"></span>
+        </div>
+      )}
       <div className="grid sm:grid-cols-3 gap-4">
         {bestSellers.length > 0 &&
           bestSellers.map((item) => <MenuItem key={item._id} {...item} />)}

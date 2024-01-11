@@ -15,7 +15,7 @@ export const metadata = {
 
 function Footer() {
   return (
-    <footer className="bg-gray-900 text-white p-4">
+    <footer className="bg-gray-900 text-white p-4 rounded-lg">
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center py-2">
         <div className="md:w-1/2 text-center md:text-left">
           <Link
