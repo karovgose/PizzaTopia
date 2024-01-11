@@ -13,6 +13,66 @@ export const metadata = {
   description: 'Delivering delicious pizzas to your doorstep!',
 };
 
+function Footer() {
+  return (
+    <footer className="bg-gray-900 text-white p-4">
+      <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center py-2">
+        <div className="md:w-1/2 text-center md:text-left">
+          <Link
+            href="/"
+            className="text-2xl text-red-500 font-bold tracking-wider"
+          >
+            PizzaTopia
+          </Link>
+          <p className="mt-2 text-gray-300">
+            Delivering delicious pizzas to your doorstep!
+          </p>
+        </div>
+
+        <div className="flex justify-center md:justify-end mt-4 md:mt-0">
+          <ul className="flex gap-6">
+            <li>
+              <Link
+                href="/"
+                className="hover:text-red-400 transition duration-300"
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/menu"
+                className="hover:text-red-400 transition duration-300"
+              >
+                Menu
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/#about"
+                className="hover:text-red-400 transition duration-300"
+              >
+                About
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/#contact"
+                className="hover:text-red-400 transition duration-300"
+              >
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="border-t border-gray-700 py-4 text-sm text-gray-400 text-center">
+        © 2023 PizzaTopia. All rights reserved.
+      </div>
+    </footer>
+  );
+}
+
 export default function RootLayout({ children }) {
   return (
     <html
@@ -27,38 +87,7 @@ export default function RootLayout({ children }) {
             <Header />
             {children}
 
-            <footer className="p-8">
-              <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center">
-                <div className="md:w-1/2 text-center md:text-left">
-                  <Link href="/" className="text-red-600 font-semibold">
-                    PizzaTopia
-                  </Link>
-                  <p className="mt-2">
-                    Delivering delicious pizzas to your doorstep!
-                  </p>
-                </div>
-
-                <div className="flex justify-center md:justify-end mt-4 md:mt-0">
-                  <ul className="flex gap-6">
-                    <li>
-                      <Link href="/">Home</Link>
-                    </li>
-                    <li>
-                      <Link href="/menu">Menu</Link>
-                    </li>
-                    <li>
-                      <Link href="/#about">About</Link>
-                    </li>
-                    <li>
-                      <Link href="/#contact">Contact</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="border-t border-gray-500 mt-8 pt-4 text-sm text-gray-500 text-center">
-                © 2023 PizzaTopia. All rights reserved.
-              </div>
-            </footer>
+            <Footer />
           </AppContext>
         </main>
       </body>
