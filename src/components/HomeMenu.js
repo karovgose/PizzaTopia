@@ -40,7 +40,7 @@ export default function HomeMenu() {
       <div className="text-center mb-4">
         <SectionHeaders
           subHeader={'check out'}
-          mainHeader={'Our Best Seller'}
+          mainHeader={'Our Recommendation'}
         />
       </div>
       <div className="grid sm:grid-cols-3 gap-4">
