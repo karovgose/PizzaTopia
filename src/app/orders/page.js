@@ -55,7 +55,7 @@ export default function OrdersPage() {
                   <div> {order.userEmail}</div>
                   <div className="text-gray-500 text-sm text-center">
                     {Array.isArray(order?.cartProducts)
-                      ? order.cartProducts.map((p) => p.name).join(', ')
+                      ? order.cartProducts.map((p) => p.name).join('\n')
                       : ''}
                   </div>
                 </div>
