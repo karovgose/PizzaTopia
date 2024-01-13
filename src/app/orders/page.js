@@ -28,7 +28,7 @@ export default function OrdersPage() {
   return (
     <section className="mt-8 max-w-2xl mx-auto">
       <Tabs isAdmin={true} />
-      <div className="mt-8 ">
+      <div className="mt-8 flex justify-center items-center">
         {loadingOrders && (
           <span className="loading loading-bars loading-md"></span>
         )}
