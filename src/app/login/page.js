@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { toast } from 'react-hot-toast';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -13,14 +14,28 @@ export default function LoginPage() {
   async function handleFormSubmit(e) {
     e.preventDefault();
     setLoginInProgress(true);
-    await signIn('credentials', { email, password, callbackUrl: '/' });
-    setLoginInProgress(false);
+
+    try {
+      const loadingToastId = toast.loading('Logging in...');
+
+      await signIn('credentials', { email, password, callbackUrl: '/' });
+
+      toast.dismiss(loadingToastId);
+
+      toast.success('Login successful');
+    } catch {
+      toast.dismiss();
+
+      toast.error('Login failed. Please check your credentials.');
+    } finally {
+      setLoginInProgress(false);
+    }
   }
+
   return (
     <section className="mt-8">
       <h1 className="text-center text-red-500 text-4xl mb-4">Login</h1>
       <form className="block max-w-xs mx-auto" onSubmit={handleFormSubmit}>
-        {' '}
         <input
           name="email"
           type="email"
@@ -44,7 +59,7 @@ export default function LoginPage() {
           or login with provider
         </div>
         <button
-          className="flex gap-4 justify-center "
+          className="flex gap-4 justify-center"
           onClick={() => signIn('google', { callbackUrl: '/' })}
           type="button"
         >
@@ -57,7 +72,7 @@ export default function LoginPage() {
           Login with google
         </button>
         <div className="text-center my-4 text-gray-500 pt-2">
-          Don&apos;t have a account?{' '}
+          Don&apos;t have an account?{' '}
           <Link href={'/register'} className="underline">
             Register here &raquo;
           </Link>

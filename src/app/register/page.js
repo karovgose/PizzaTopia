@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('');
@@ -16,17 +17,30 @@ export default function RegisterPage() {
     e.preventDefault();
     setCreatingUser(true);
     setError(false);
-    const response = await fetch('/api/register', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-    if (!response.ok) {
+    const loadingToast = toast.loading('Creating user...', { duration: 0 });
+    try {
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (!response.ok) {
+        setError(true);
+        toast.error('Error creating user. Please try again.');
+      } else {
+        setUserCreated(true);
+        setEmail('');
+        setPassword('');
+        toast.success('User created successfully!');
+      }
+    } catch {
       setError(true);
-    } else {
-      setUserCreated(true);
+      toast.error('Error creating user. Please try again.');
+    } finally {
+      toast.dismiss(loadingToast);
+      setCreatingUser(false);
     }
-    setCreatingUser(false);
   }
   return (
     <section className="mt-8">
