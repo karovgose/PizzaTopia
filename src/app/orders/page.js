@@ -53,10 +53,10 @@ export default function OrdersPage() {
                 </div>
                 <div>
                   <div> {order.userEmail}</div>
-                  <div className="text-gray-500 text-sm text-center">
+                  <div className="text-gray-500 text-sm text-center flex items-center justify-center flex-col">
                     {Array.isArray(order?.cartProducts)
-                      ? order.cartProducts.map((p) => (
-                          <p key={p._id}>{p.name}</p>
+                      ? order.cartProducts.map((p, i) => (
+                          <p key={i}>{p.name}</p>
                         ))
                       : ''}
                   </div>
