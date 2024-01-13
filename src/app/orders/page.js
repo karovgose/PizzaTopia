@@ -28,9 +28,11 @@ export default function OrdersPage() {
   return (
     <section className="mt-8 max-w-2xl mx-auto">
       <Tabs isAdmin={true} />
-      <div className="mt-8 flex justify-center items-center">
+      <div className="mt-8 ">
         {loadingOrders && (
-          <span className="loading loading-bars loading-md"></span>
+          <div className="flex justify-center items-center">
+            <span className="loading loading-bars loading-md"></span>
+          </div>
         )}
         {orders?.length > 0 &&
           orders.map((order) => (
