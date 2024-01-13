@@ -11,7 +11,7 @@ export default function NotFound() {
           We couldn&apos;t find the page you&apos;re looking for.
         </p>
         <Link href="/">
-          <span className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 rounded-full">
+          <span className="bg-red-500 text-white font-semibold py-2 px-6 rounded-full">
             Return Home
           </span>
         </Link>
