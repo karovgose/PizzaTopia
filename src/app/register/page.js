@@ -66,7 +66,7 @@ export default function RegisterPage() {
           or login with provider
         </div>
         <button
-          className="flex gap-4 justify-center hover:bg-gray-200 transition duration-300"
+          className="flex gap-4 justify-center "
           onClick={() => signIn('google', { callbackUrl: '/' })}
           type="button"
         >
