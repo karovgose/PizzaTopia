@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { UseProfile } from './UseProfile';
 import AddressInputs from './AddressInputs';
 export default function UserForm({ user, onSave }) {
-  console.log(user);
   const [image, setImage] = useState(user?.image || '');
   const [userName, setUsername] = useState(user?.name || '');
   const [phone, setPhone] = useState(user?.phone || '');
@@ -45,7 +44,6 @@ export default function UserForm({ user, onSave }) {
 
   const handleAdminChange = (e) => {
     setIsAdmin(e.target.checked);
-    console.log(isAdmin);
   };
 
   return (

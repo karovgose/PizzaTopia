@@ -38,14 +38,14 @@ export default function OrdersPage() {
           orders.map((order) => (
             <div
               key={order._id}
-              className="bg-gray-200 rounded-lg mb-2 p-4 flex flex-col md:flex-row justify-between items-center gap-2"
+              className="bg-gray-200 rounded-lg  mb-2 p-4 flex flex-col md:flex-row justify-between items-center gap-2"
             >
               <div className="flex-grow flex flex-col md:flex-row md:items-center gap-2">
                 <div>
                   <div
                     className={
                       (order.paid ? 'bg-green-500 ' : 'bg-red-500 ') +
-                      'p-2 rounded-md text-white'
+                      'p-2 rounded-md text-white text-center'
                     }
                   >
                     {order.paid ? 'paid' : 'not paid'}
@@ -64,7 +64,10 @@ export default function OrdersPage() {
               </div>
               <div className="md:flex md:gap-2 md:items-center md:justify-end md:whitespace-nowrap">
                 {DateTimeForHuman(order.createdAt)}
-                <Link href={'/orders/' + order._id} className="button">
+                <Link
+                  href={'/orders/' + order._id}
+                  className="button mt-2 bg-gray-300"
+                >
                   show order
                 </Link>
               </div>
