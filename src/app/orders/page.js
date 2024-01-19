@@ -66,7 +66,9 @@ export default function OrdersPage() {
                 {DateTimeForHuman(order.createdAt)}
                 <Link
                   href={'/orders/' + order._id}
-                  className="button mt-2 bg-gray-300"
+                  className="button mt-2 bg-gray-3
+                  
+                  00"
                 >
                   show order
                 </Link>

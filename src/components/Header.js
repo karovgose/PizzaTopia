@@ -91,14 +91,16 @@ export default function Header() {
 
       <div className="hidden md:flex items-center justify-between">
         {' '}
-        <nav className="flex items-center gap-8 text-slate-500 font-semibold">
+        <nav className="flex items-center gap-8 text-slate-500 font-semibold justify-evenly flex-grow">
           <Link href="/" className="text-red-600 font-semibold">
             PizzaTopia
           </Link>
-          <Link href="/">Home</Link>
-          <Link href="/menu">Menu</Link>
-          <Link href="/#about">About</Link>
-          <Link href="/#contact">Contact</Link>
+          <div className="flex justify-center gap-3 space-x-5">
+            <Link href="/">Home</Link>
+            <Link href="/menu">Menu</Link>
+            <Link href="/#about">About</Link>
+            <Link href="/#contact">Contact</Link>
+          </div>
         </nav>
         <nav className="flex items-center gap-4 text-slate-500 font-semibold">
           <AuthLinks status={status} />
@@ -107,7 +109,7 @@ export default function Header() {
             {cartProducts?.length > 0 && (
               <span
                 className="absolute
-           -top-3 -right-4 bg-red-500 text-white text-xs py-1 px-2 rounded-full leading-3"
+     -top-3 -right-4 bg-red-500 text-white text-xs py-1 px-2 rounded-full leading-3"
               >
                 {cartProducts.length}
               </span>

@@ -55,6 +55,11 @@ export default function LoginPage() {
         <button type="submit" disabled={loginInProgress}>
           Login
         </button>
+        <div className="text-center my-4 text-gray-500">
+          <Link href={'/forget-password'} className="underline">
+            Forgot Password?
+          </Link>
+        </div>
         <div className="my-4 text-gray-500 text-center">
           or login with provider
         </div>

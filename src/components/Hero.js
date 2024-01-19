@@ -14,7 +14,7 @@ export default function Hero() {
           Unleash your taste buds with our exquisite flavors and handcrafted
           pizzas
         </p>
-        <div className="flex gap-4">
+        <div className="flex justify-center gap-4">
           <Link
             href={'/menu'}
             className="bg-red-500 text-white uppercase text-sm px-4 py-2 rounded-full flex gap-2 items-center border-0"

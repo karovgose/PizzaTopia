@@ -20,16 +20,16 @@ export default function HomeMenu() {
 
   return (
     <section>
-      <div className="absolute  left-0 right-0 w-full">
+      <div className="hidden md:block absolute  left-0 right-0 w-full">
         <div className="absolute left-0 -top-[70px] -z-10">
           <Image src={'/salad1.png'} alt={'salad'} width={109} height={189} />
         </div>
-        <div className="absolute -top-[100px] right-0 -z-10">
+        <div className="hidden md:block absolute -top-[100px] right-0 -z-10">
           <Image src={'/salad2.png'} alt={'salad'} width={107} height={195} />
         </div>
       </div>
 
-      <div className="text-center mb-4">
+      <div className="text-center my-4">
         <SectionHeaders
           subHeader={'check out'}
           mainHeader={'Our Recommendation'}

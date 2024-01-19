@@ -17,6 +17,8 @@ const UserSchema = new Schema(
       },
     },
     admin: { type: Boolean, default: false },
+    resetToken: { type: String, required: false },
+    resetTokenExpiry: { type: Date, required: false },
   },
   { timestamps: true }
 );
