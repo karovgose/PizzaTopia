@@ -9,15 +9,24 @@ import { toast } from 'react-hot-toast';
 export default function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
   const [creatingUser, setCreatingUser] = useState(false);
   const [userCreated, setUserCreated] = useState(false);
   const [error, setError] = useState(false);
 
   async function handleFormSubmit(e) {
     e.preventDefault();
+
+    // Check if passwords match
+    if (password !== repeatPassword) {
+      toast.error('Passwords do not match.');
+      return;
+    }
+
     setCreatingUser(true);
     setError(false);
     const loadingToast = toast.loading('Creating user...', { duration: 0 });
+
     try {
       const response = await fetch('/api/register', {
         method: 'POST',
@@ -25,13 +34,19 @@ export default function RegisterPage() {
         headers: { 'Content-Type': 'application/json' },
       });
 
-      if (!response.ok) {
+      const data = await response.json(); // Parse the response data
+
+      if (data.message === 'Email already exists') {
+        // Check if the email already exists
+        toast.error('Email already exists.'); // Show an error message
+      } else if (!response.ok) {
         setError(true);
         toast.error('Error creating user. Please try again.');
       } else {
         setUserCreated(true);
         setEmail('');
         setPassword('');
+        setRepeatPassword(''); // Clear the repeated password
         toast.success('User created successfully!');
       }
     } catch {
@@ -42,6 +57,7 @@ export default function RegisterPage() {
       setCreatingUser(false);
     }
   }
+
   return (
     <section className="mt-8">
       <h1 className="text-center text-red-500 text-4xl mb-4">Register</h1>
@@ -49,7 +65,7 @@ export default function RegisterPage() {
         <div className="my-4 text-center">
           User created. <br /> Now you can{' '}
           <Link href={'/login'} className="underline">
-            Login &raquo;
+            Login »
           </Link>
         </div>
       )}
@@ -71,6 +87,13 @@ export default function RegisterPage() {
           placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          disabled={creatingUser}
+        />
+        <input
+          type="password"
+          placeholder="repeat password"
+          value={repeatPassword} // Use the repeatPassword state variable
+          onChange={(e) => setRepeatPassword(e.target.value)} // Update the repeatPassword state variable
           disabled={creatingUser}
         />
         <button type="submit" disabled={creatingUser}>
@@ -95,7 +118,7 @@ export default function RegisterPage() {
         <div className="text-center my-4 text-gray-500 pt-2">
           Already have a account?{' '}
           <Link href={'/login'} className="underline">
-            Login here &raquo;
+            Login here »
           </Link>
         </div>
       </form>

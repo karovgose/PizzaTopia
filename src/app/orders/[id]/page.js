@@ -2,6 +2,7 @@
 import AddressInputs from '@/components/AddressInputs';
 import { CartContext, cartProductPrice } from '@/components/AppContext';
 import CartProduct from '@/components/CartProduct';
+import Map from '@/components/Map';
 import SectionHeaders from '@/components/SectionHeaders';
 import { useParams } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
@@ -74,7 +75,7 @@ export default function OrderPage() {
           </div>
           <div>
             <div className="bg-gray-100 p-4 rounded-lg">
-              <AddressInputs disabled={true} addressProps={order} />
+              <Map />
             </div>
           </div>
         </div>
